@@ -38,13 +38,13 @@ jobs:
           $rawPassword += $charSet.Number | Get-Random -Count 4
           $password = -join ($rawPassword | Sort-Object { Get-Random })
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
-          New-LocalUser -Name "gb1" -Password $securePass -AccountNeverExpires
-          Add-LocalGroupMember -Group "Administrators" -Member "gb1"
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "gb1"
+          New-LocalUser -Name "gb3" -Password $securePass -AccountNeverExpires
+          Add-LocalGroupMember -Group "Administrators" -Member "gb3"
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "gb3"
           
-          echo "RDP_CREDS=USER: gb1 | PASS: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=USER: gb3 | PASS: $Password" >> $env:GITHUB_ENV
           
-          if (-not (Get-LocalUser -Name "gb1")) {
+          if (-not (Get-LocalUser -Name "gb3")) {
               Write-Error "User creation failed"
               exit 1
           }
