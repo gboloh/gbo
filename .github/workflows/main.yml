@@ -31,13 +31,11 @@ jobs:
           Add-Type -AssemblyName System.Security
           $charSet = @{
               Lower   = [char[]](97)  # a
-              Lower   = [char[]](97)  # a
-              Lower   = [char[]](97)  # a
+              Number  = [char[]](50)  # 2
           }
           $rawPassword = @()
           $rawPassword += $charSet.Lower | Get-Random -Count 4
-          $rawPassword += $charSet.Lower | Get-Random -Count 4
-          $rawPassword += $charSet.Lower | Get-Random -Count 4
+          $rawPassword += $charSet.Number | Get-Random -Count 4
           $password = -join ($rawPassword | Sort-Object { Get-Random })
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
           New-LocalUser -Name "gb1" -Password $securePass -AccountNeverExpires
