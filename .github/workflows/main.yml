@@ -6,7 +6,7 @@ on:
 jobs:
   rdp:
     runs-on: windows-latest
-    timeout-minutes: 360
+    timeout-minutes: 350
 
     steps:
       - name: 》Menyiapkan Konfigurasi Core RDP ...
@@ -35,9 +35,9 @@ jobs:
               Special = @('@')        # @
           }
           $rawPassword = @()
-          $rawPassword += $charSet.Lower | -Count 4
-          $rawPassword += $charSet.Number | -Count 4
-          $rawPassword += $charSet.Special | -Count 4
+          $rawPassword += $charSet.Lower |
+          $rawPassword += $charSet.Number |
+          $rawPassword += $charSet.Special |
           $password = -join ($rawPassword | Sort-Object)
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
           New-LocalUser -Name "gb1" -Password $securePass -AccountNeverExpires
