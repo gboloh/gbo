@@ -26,7 +26,7 @@ jobs:
             dir=in action=allow protocol=TCP localport=3389
           # (Optional) Restart the Remote Desktop service to ensure changes take effect
           Restart-Service -Name TermService -Force
-      - name: 》 Menyusun User & Password ....
+      - name: 》 Siapkan User & Password ....
         run: |
           $password = "a2@"
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
@@ -52,7 +52,7 @@ jobs:
           Remove-Item $installerPath -Force
       - name: 》 Establish Koneksi Tailscale ...
         run: |
-          # Siapkan AuthKey & HostName Unik ...
+          # Siapkan AuthKey IP Address ...
           & "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=${{ secrets.TAILSCALE_AUTH_KEY }} --hostname=gh-runner-$env:GITHUB_RUN_ID
           
           # Wait for Tailscale to assign an IP
