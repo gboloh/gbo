@@ -26,27 +26,19 @@ jobs:
             dir=in action=allow protocol=TCP localport=3389
           # (Optional) Restart the Remote Desktop service to ensure changes take effect
           Restart-Service -Name TermService -Force
-      - name: 》 Menyiapkan ID & Pass ...
+      - name: 》 Menyusun User & Password ....
         run: |
-          Add-Type -AssemblyName System.Security
-          $charSet = @{
-              Lower   = [char[]](97)  # a
-              Number  = [char[]](50)  # 2
-              Special = @('@')        # @
-          }
-          $rawPassword = @()
-          $rawPassword += $charSet.Lower |
-          $rawPassword += $charSet.Number |
-          $rawPassword += $charSet.Special |
-          $password = -join ($rawPassword | Sort-Object)
+          $password = "MyFixedPass123!"
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
-          New-LocalUser -Name "gb1" -Password $securePass -AccountNeverExpires
-          Add-LocalGroupMember -Group "Administrators" -Member "gb1"
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "gb1"
+          if (-not (Get-LocalUser -Name "d" -ErrorAction SilentlyContinue)) {
+              New-LocalUser -Name "d" -Password $securePass -AccountNeverExpires
+          }
+          Add-LocalGroupMember -Group "Administrators" -Member "d" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "d" -ErrorAction SilentlyContinue
           
-          echo "RDP_CREDS=USER: gb1 | PASS: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=Nama: d | Sandi: $Password" >> $env:GITHUB_ENV
           
-          if (-not (Get-LocalUser -Name "gb1")) {
+          if (-not (Get-LocalUser -Name "d")) {
               Write-Error "User creation failed"
               exit 1
           }
