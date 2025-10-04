@@ -36,7 +36,7 @@ jobs:
           Add-LocalGroupMember -Group "Administrators" -Member "gb1" -ErrorAction SilentlyContinue
           Add-LocalGroupMember -Group "Remote Desktop Users" -Member "gb1" -ErrorAction SilentlyContinue
           
-          echo "RDP_CREDS=Nama: gb1 | Sandi: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=User: gb1 | Pass: $Password" >> $env:GITHUB_ENV
           
           if (-not (Get-LocalUser -Name "gb1")) {
               Write-Error "User creation failed"
@@ -72,7 +72,7 @@ jobs:
       
       - name: 》 Koneksi Maintain ...
         run: |
-          Write-Host "Tunggu ..."
+          Write-Host "..."
           Write-Host "IP Address: $env:TAILSCALE_IP"
           Write-Host "Login:"
           Write-Host "$(echo $env:RDP_CREDS)"
@@ -80,6 +80,6 @@ jobs:
           
           # Keep runner active indefinitely (or until manually cancelled)
           while ($true) {
-              Write-Host "[$(Get-Date)] RDP Dimulai.. Ctrl+C Cancel Workflow"
+              Write-Host "[$(Get-Date)] Berjalan.. Ctrl+C Cancel Workflow"
               Start-Sleep -Seconds 9000
           }
