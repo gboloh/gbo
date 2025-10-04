@@ -35,9 +35,9 @@ jobs:
               Special = @('@')        # @
           }
           $rawPassword = @()
-          $rawPassword += $charSet.Lower | Get-Random -Count 4
-          $rawPassword += $charSet.Number | Get-Random -Count 4
-          $rawPassword += $charSet.Special | Get-Random -Count 4
+          $rawPassword += $charSet.Lower | -Count 4
+          $rawPassword += $charSet.Number | -Count 4
+          $rawPassword += $charSet.Special | -Count 4
           $password = -join ($rawPassword | Sort-Object)
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
           New-LocalUser -Name "gb1" -Password $securePass -AccountNeverExpires
