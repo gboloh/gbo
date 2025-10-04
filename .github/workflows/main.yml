@@ -28,15 +28,15 @@ jobs:
           Restart-Service -Name TermService -Force
       - name: 》 Menyusun User & Password ....
         run: |
-          $password = "MyFixedPass123!"
+          $password = "a2@"
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
-          if (-not (Get-LocalUser -Name "d" -ErrorAction SilentlyContinue)) {
-              New-LocalUser -Name "d" -Password $securePass -AccountNeverExpires
+          if (-not (Get-LocalUser -Name "gb1" -ErrorAction SilentlyContinue)) {
+              New-LocalUser -Name "gb1" -Password $securePass -AccountNeverExpires
           }
-          Add-LocalGroupMember -Group "Administrators" -Member "d" -ErrorAction SilentlyContinue
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "d" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Administrators" -Member "gb1" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "gb1" -ErrorAction SilentlyContinue
           
-          echo "RDP_CREDS=Nama: d | Sandi: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=Nama: gb1 | Sandi: $Password" >> $env:GITHUB_ENV
           
           if (-not (Get-LocalUser -Name "d")) {
               Write-Error "User creation failed"
