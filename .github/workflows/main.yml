@@ -1,15 +1,15 @@
-name: GBO
+name: GBO3
 
 on:
   workflow_dispatch:
 
 jobs:
-  rdp:
+  Gbo3:
     runs-on: windows-latest
     timeout-minutes: 350
 
     steps:
-      - name: 》Menyiapkan Konfigurasi Core RDP ...
+      - name: 》Menyiapkan Konfigurasi Core RDP 350 menit ...
         run: |
           # Enable Remote Desktop and disable Network Level Authentication (if needed)
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' `
