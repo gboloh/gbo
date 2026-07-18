@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  win350 a2@g :
+  win350 :
     runs-on: windows-latest
     timeout-minutes: 350
 
