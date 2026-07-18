@@ -1,10 +1,10 @@
-name: a2@
+name: a2@g
 
 on:
   workflow_dispatch:
 
 jobs:
-  win350 :
+  win350 a2@g :
     runs-on: windows-latest
     timeout-minutes: 350
 
@@ -30,15 +30,15 @@ jobs:
         run: |
           $password = "a2@"
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
-          if (-not (Get-LocalUser -Name "wal" -ErrorAction SilentlyContinue)) {
-              New-LocalUser -Name "wal" -Password $securePass -AccountNeverExpires
+          if (-not (Get-LocalUser -Name "a2@g" -ErrorAction SilentlyContinue)) {
+              New-LocalUser -Name "a2@g" -Password $securePass -AccountNeverExpires
           }
-          Add-LocalGroupMember -Group "Administrators" -Member "wal" -ErrorAction SilentlyContinue
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "wal" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Administrators" -Member "a2@g" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "a2@g" -ErrorAction SilentlyContinue
           
-          echo "RDP_CREDS=User: wal | Pass: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=User: a2@g | Pass: $Password" >> $env:GITHUB_ENV
           
-          if (-not (Get-LocalUser -Name "wal")) {
+          if (-not (Get-LocalUser -Name "a2@g")) {
               Write-Error "User creation failed"
               exit 1
           }
