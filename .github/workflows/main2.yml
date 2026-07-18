@@ -1,4 +1,4 @@
-name: @G4-350
+name: G4-350
 
 on:
   workflow_dispatch:
