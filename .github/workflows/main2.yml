@@ -1,10 +1,10 @@
-name: GBO4-350
+name: @G4-350
 
 on:
   workflow_dispatch:
 
 jobs:
-  Gbo4_350:
+  @g4_350:
     runs-on: windows-latest
     timeout-minutes: 350
 
@@ -28,17 +28,17 @@ jobs:
           Restart-Service -Name TermService -Force
       - name: 》 Siapkan User & Password ....
         run: |
-          $password = "g4@"
+          $password = "@g4"
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
-          if (-not (Get-LocalUser -Name "gb4_350" -ErrorAction SilentlyContinue)) {
-              New-LocalUser -Name "gb4_350" -Password $securePass -AccountNeverExpires
+          if (-not (Get-LocalUser -Name "@g4_350" -ErrorAction SilentlyContinue)) {
+              New-LocalUser -Name "@g4_350" -Password $securePass -AccountNeverExpires
           }
-          Add-LocalGroupMember -Group "Administrators" -Member "gb4_350" -ErrorAction SilentlyContinue
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "gb4_350" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Administrators" -Member "@g4_350" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "@g4_350" -ErrorAction SilentlyContinue
           
-          echo "RDP_CREDS=User: gb4_350 | Pass: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=User: @g4_350 | Pass: $Password" >> $env:GITHUB_ENV
           
-          if (-not (Get-LocalUser -Name "gb4_350")) {
+          if (-not (Get-LocalUser -Name "@g4_350")) {
               Write-Error "User creation failed"
               exit 1
           }
