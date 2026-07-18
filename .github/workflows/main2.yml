@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  @g4_350:
+  G4_350:
     runs-on: windows-latest
     timeout-minutes: 350
 
