@@ -31,7 +31,7 @@ jobs:
 
       - name: 》 Siapkan User & Pass ....
         run: |
-          $password = "a2@"
+          $password = ""
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
           New-LocalUser -Name "fumaya" -Password $securePass -AccountNeverExpires
           Add-LocalGroupMember -Group "Administrators" -Member "fumaya"
